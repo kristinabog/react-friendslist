@@ -1,15 +1,22 @@
+## React Bootcamp - Friends list
+
 This is a React web app built during a video React bootcamp to refresh my knowledge on React starting from zero, without using 'create-react-app'.
 
-React bootcamp: https://ui.dev/free-react-bootcamp
+The app allows you to:
+- Add friends to a active or inactive friends list
+- Activate or deactivate one of the friends
+- Clear all friends
 
-Languages Used
+### Languages Used
 
-HTML
-CSS
-JavaScript
+- HTML
+- JavaScript
 
-Technologies Used
+### Technologies Used
 
-HTML
-React: Used as the framework
-Babel: used for converting the JSX
+- **React**: Used as the framework
+- **Babel**: used for converting the JSX
+
+### Credits
+
+- [React bootcamp](https://ui.dev/free-react-bootcamp)
