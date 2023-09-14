@@ -12,6 +12,31 @@
 <body>
     <div id="app">
 
+    <script>
+        window.API = {
+            fetchFriends() {
+                return new Promise((res, rej) => {
+                  const friends = [
+                    {
+                        name: 'Tim',
+                        active: true,
+                    },
+                    {
+                        name: 'Tina',
+                        active: true,
+                    },
+                    {
+                        name: 'Jake',
+                        active: false
+                    }
+                  ]
+
+                  setTimeout(() => res(friends), 2000)
+                })
+            }
+        }
+    </script>
+
     </div>
     <script type="text/babel">
         function ActiveFriends (props) {
@@ -53,27 +78,37 @@
                 super(props)
 
                 this.state = {
-                    friends: [
-                        {
-                            name: 'Tim',
-                            active: true,
-                        },
-                        {
-                            name: 'Tina',
-                            active: true,
-                        },
-                        {
-                            name: 'Jake',
-                            active: false
-                        }
-                    ],
+                    friends: [],
                     input:'',
+                    loading: true
                 }
 
                 this.handleRemoveFriend = this.handleRemoveFriend.bind(this)
                 this.updateInput = this.updateInput.bind(this)
                 this.handleAddFriends = this.handleAddFriends.bind(this)
                 this.handleToggleFriend = this.handleToggleFriend.bind(this)
+
+                console.log('--constructor--')
+            }
+
+            componentDidMount() {
+                console.log('--componentDidMount--')
+
+                API.fetchFriends()
+                    .then((friends) => {
+                        this.setState({
+                            friends,
+                            loading: false
+                        })
+                    })
+            }
+
+            componentDidUpdate() {
+                console.log('--componentDidUpdate--')
+            }
+
+            componentWillUnmount() {
+                console.log('--componentWillUnmount--')
             }
 
             handleAddFriends() {
@@ -119,6 +154,13 @@
             }
 
             render() {
+
+                console.log('--render--')
+
+                if (this.state.loading === true) {
+                    return <h1>Loading..</h1>
+                }
+                
                 return (
                     <div>
                         <input
